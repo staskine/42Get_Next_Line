@@ -10,4 +10,6 @@ This project also served as an introduction to static variables. I find it fasci
 
 # How to use my function
 
-Just download the files. Compile using a main that opens a file and use the fd acquired from that. I made a main that can be used with the project that is in this repository. 
+Just download the files. Compile using a main that opens a file and use the fd acquired from that. I made a main that can be used with the project that is in this repository. There is also an example text file. 
+
+Compile using: <cc *.c> and then <./a.out> (remove the <>)  
