@@ -6,11 +6,13 @@
 /*   By: sataskin <sataskin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 15:28:11 by sataskin          #+#    #+#             */
-/*   Updated: 2023/12/21 13:24:49 by sataskin         ###   ########.fr       */
+/*   Updated: 2023/12/28 14:40:14 by sataskin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+
+/*This function frees an array and returns a NULL for error handling */
 
 char	*ft_ret_strdel(char **string)
 {
@@ -18,6 +20,10 @@ char	*ft_ret_strdel(char **string)
 	*string = NULL;
 	return (NULL);
 }
+
+/* This function takes the static variable and returns the line from it.
+ * If the file ends it just duplicates the string and frees it. Otherwise 
+ * it extracts what it needed and leaves the rest */
 
 static char	*get_result(char **string)
 {
@@ -48,6 +54,8 @@ static char	*get_result(char **string)
 	return (line);
 }
 
+/* This function compiles the string and the buffer from read */
+
 static char	*ft_strcompile(char **string, char *buf)
 {
 	char	*temp;
@@ -69,12 +77,20 @@ static char	*ft_strcompile(char **string, char *buf)
 	return (*string);
 }
 
+/*This function checks if there was an error with read. Otherwise 
+ * it just continues. */
+
 static char	*check_result(char **string, int ret)
 {
 	if (ret < 0)
 		return (ft_ret_strdel(string));
 	return (get_result(string));
 }
+
+/* This is the main function. It first checks for error handling. 
+ * Then it checks if the static variable has a line in it. If not it continues 
+ * to read the file BUFFER_SIZE at a time. It continues this until either the 
+ * file ends or there is a full line. */
 
 char	*get_next_line(int fd)
 {
